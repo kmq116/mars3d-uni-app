@@ -23,3 +23,4 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 define(["exports","./defaultValue-ac2201bb"],(function(e,t){"use strict";e.combine=function e(n,o,r){r=t.defaultValue(r,!1);const f={},i=t.defined(n),a=t.defined(o);let c,s,u;if(i)for(c in n)n.hasOwnProperty(c)&&(s=n[c],a&&r&&"object"==typeof s&&o.hasOwnProperty(c)?(u=o[c],f[c]="object"==typeof u?e(s,u,r):s):f[c]=s);if(a)for(c in o)o.hasOwnProperty(c)&&!f.hasOwnProperty(c)&&(u=o[c],f[c]=u);return f}}));
+//# sourceMappingURL=combine-0dce9b0f.js.map

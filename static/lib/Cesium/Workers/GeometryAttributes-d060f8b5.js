@@ -23,3 +23,4 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 define(["exports","./defaultValue-ac2201bb"],(function(t,e){"use strict";t.GeometryAttributes=function(t){t=e.defaultValue(t,e.defaultValue.EMPTY_OBJECT),this.position=t.position,this.normal=t.normal,this.st=t.st,this.bitangent=t.bitangent,this.tangent=t.tangent,this.color=t.color}}));
+//# sourceMappingURL=GeometryAttributes-d060f8b5.js.map

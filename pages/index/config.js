@@ -1,11 +1,7 @@
 export const mapOptions = {
   scene: {
-    center: {
-      lat: 31.686288,
-      lng: 117.229619,
-      alt: 11333.9,
-      heading: 359.2,
-      pitch: -39.5,
+    scene: {
+      center: { lat: 31.81226, lng: 117.096703, alt: 231, heading: 329, pitch: -28 }
     },
     scene3DOnly: false,
     shadows: false,

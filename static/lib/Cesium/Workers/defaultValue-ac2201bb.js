@@ -23,3 +23,4 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 define(["exports"],(function(e){"use strict";function n(e,n){return null!=e?e:n}n.EMPTY_OBJECT=Object.freeze({}),e.defaultValue=n,e.defined=function(e){return null!=e}}));
+//# sourceMappingURL=defaultValue-ac2201bb.js.map

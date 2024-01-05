@@ -22,4 +22,5 @@
  * Portions licensed separately.
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
-define(["./defaultValue-ac2201bb","./EllipsoidGeometry-46aff949","./Transforms-6c4dd71f","./Matrix2-6555478a","./RuntimeError-d45af186","./ComponentDatatype-43ab226f","./WebGLConstants-e12cdc8a","./_commonjsHelpers-3aae1032-ac53d93e","./combine-0dce9b0f","./GeometryAttribute-a34d86d0","./GeometryAttributes-d060f8b5","./GeometryOffsetAttribute-a17b96d9","./IndexDatatype-88be9f5a","./VertexFormat-d53ce9da"],(function(e,t,a,r,o,d,n,i,f,c,m,s,b,u){"use strict";return function(a,r){return e.defined(r)&&(a=t.EllipsoidGeometry.unpack(a,r)),t.EllipsoidGeometry.createGeometry(a)}}));
+define(["./defaultValue-ac2201bb","./EllipsoidGeometry-e035aadf","./Transforms-3f580a0c","./Matrix2-5bde29de","./RuntimeError-d45af186","./ComponentDatatype-164c57e1","./WebGLConstants-e12cdc8a","./_commonjsHelpers-3aae1032-ac53d93e","./combine-0dce9b0f","./GeometryAttribute-f83e6129","./GeometryAttributes-d060f8b5","./GeometryOffsetAttribute-a17b96d9","./IndexDatatype-4e1ec1a1","./VertexFormat-4a6cdfad"],(function(e,t,a,r,o,d,n,i,c,f,m,s,u,b){"use strict";return function(a,r){return e.defined(r)&&(a=t.EllipsoidGeometry.unpack(a,r)),t.EllipsoidGeometry.createGeometry(a)}}));
+//# sourceMappingURL=createEllipsoidGeometry.js.map

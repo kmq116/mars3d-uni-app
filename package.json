@@ -28,5 +28,8 @@
   ],
   "author": "火星科技",
   "license": "Apache-2.0",
-  "homepage": "http://mars3d.cn"
+  "homepage": "http://mars3d.cn",
+  "dependencies": {
+    "cesium": "^1.113.0"
+  }
 }

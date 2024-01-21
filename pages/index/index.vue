@@ -11,6 +11,11 @@
 
 <script module="mars3d" lang="renderjs">
 import {	mapOptions} from './config.js'
+import "cesium/Build/Cesium/Widgets/widgets.css";
+import * as Cesium from 'cesium'
+
+Cesium.buildModuleUrl.setBaseUrl('static/Cesium/');
+// window.CESIUM_BASE_URL = 'static/Cesium/'
 
 // 添加 replaceAll 的 polyfill 有些安卓机的 js 引擎没有这个 api
 if (!String.prototype.replaceAll) {
@@ -31,24 +36,10 @@ export default {
 		}
 	},
 	mounted() {
-		this.loadSource([
-			//用本地地址，并可以官网下载最新包，手动覆盖下，http://mars3d.cn/download.html
-			"static/lib/Cesium/Widgets/widgets.css",
-			"static/lib/Cesium/Cesium.js",
-			"static/lib/mars3d/mars3d.css",
-			"static/lib/mars3d/mars3d.js",
-			"static/css/style.css",
-
-			//用在线地址
-			// "http://mars3d.cn/lib/Cesium/Widgets/widgets.css",
-			// "http://mars3d.cn/lib/Cesium/Cesium.js",
-			// "http://mars3d.cn/lib/mars3d/mars3d.css",
-			// "http://mars3d.cn/lib/mars3d/mars3d.js",
-			// "static/css/style.css",
-		]).then(() => {
-			this.rewriteCesiumSources(Cesium);
-			this.createMap()
-		})
+    console.log(window.location.href,'------href')
+    // import "cesium/Build/Cesium/Widgets/widgets.css";
+    this.rewriteCesiumSources(Cesium)
+    const viewer = new Cesium.Viewer("mars3dContainer");
 	},
 	methods: {
 		//创建地图

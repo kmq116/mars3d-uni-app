@@ -1,7 +1,9 @@
 import mitt from 'mitt';
 
 export const CesiumEmitter = {
-  test: 'test'
+  test: 'test',
+  drawPoint: 'drawPoint',
+  cesium: 'cesium'
 }
 console.log(CesiumEmitter)
 

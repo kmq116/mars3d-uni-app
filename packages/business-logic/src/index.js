@@ -21,9 +21,9 @@ export class BusinessLogic {
             }
         })
         graphicLayer.addGraphic(graphic)
-        graphic.on(mars3d.EventType.click, () => {
+        graphic.on(mars3d.EventType.click, (e) => {
             // 注意，这里不能传函数
-            $ownerInstance.callMethod('cesiumCallback', '点击了对象')
+            $ownerInstance.callMethod('cesiumCallback', e.id)
         })
     }
 

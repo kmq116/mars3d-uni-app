@@ -1,7 +1,9 @@
 <template>
   <view class="content">
     <!-- #ifdef APP-PLUS || H5 -->
-    <div id="mars3dContainer" class="mars3d-container"></div>
+    <!--    这里有个坑，就是必须使用 view 组件，而不能使用 div-->
+    <view id="mars3dContainer" :prop="option" :change:prop="mars3d.updateCesium" class="mars3d-container"></view>
+        <popup style="position: absolute;z-index: 10;right:0"></popup>
     <!-- #endif -->
     <!-- #ifndef APP-PLUS || H5 -->
     <web-view :src="url"></web-view>
@@ -10,11 +12,30 @@
 </template>
 <script>
 import {CesiumEmitter, emitter} from "./cesiumEmitter";
+import Popup from "./popup.vue";
 
-emitter.on(CesiumEmitter.test, (a) => {
-  console.log('收到了 cesiumCallback 发布的事件', a)
-})
+
 export default {
+  components: {Popup},
+  data() {
+    return {
+      option: {
+        type: 'default',
+        params: {}
+      },
+    }
+  },
+  mounted() {
+    // 在这里订阅发布的 mitter 事件
+
+    emitter.on(CesiumEmitter.cesium, ({type, params}) => {
+      console.log('收到 mitter 发布的事件')
+      this.option = {
+        type, params
+      }
+      console.log('收到 mitter 发布的事件', this.option)
+    })
+  },
   methods: {
     cesiumCallback(data) {
       console.log(data, 'cesiumCallback 的参数')
@@ -66,6 +87,9 @@ export default {
     })
   },
   methods: {
+    updateCesium(newValue, oldValue, ownerInstance, instance) {
+      console.log('updateData rederjs 层的数据', newValue)
+    },
     //创建地图
     createMap() {
       const Cesium = mars3d.Cesium;

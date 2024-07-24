@@ -10,13 +10,14 @@
 </template>
 <script>
 import {CesiumEmitter, emitter} from "./cesiumEmitter";
-emitter.on(CesiumEmitter.test,(a)=>{
-  console.log('收到了 cesiumCallback 发布的事件',a)
+
+emitter.on(CesiumEmitter.test, (a) => {
+  console.log('收到了 cesiumCallback 发布的事件', a)
 })
 export default {
   methods: {
     cesiumCallback(data) {
-      console.log(data,'cesiumCallback 的参数')
+      console.log(data, 'cesiumCallback 的参数')
       emitter.emit(CesiumEmitter.test, data)
     }
   }
@@ -24,7 +25,8 @@ export default {
 </script>
 <script module="mars3d" lang="renderjs">
 import { mapOptions } from './config.js'
-
+import { BusinessLogic } from 'business-logic'
+import { setupCesium, initCesium, injectBusinessLogic } from 'mars3d-cesium-wrapper'
 // 添加 replaceAll 的 polyfill 有些安卓机的 js 引擎没有这个 api
 if (!String.prototype.replaceAll) {
   String.prototype.replaceAll = function (str, newStr) {
@@ -67,15 +69,16 @@ export default {
     //创建地图
     createMap() {
       const Cesium = mars3d.Cesium;
-
-      var map = new mars3d.Map('mars3dContainer', mapOptions);
+      initCesium({cesium: Cesium, _mars3d: mars3d})
+      const map = setupCesium({container: 'mars3dContainer', mapOptions})
       console.log("map构造完成", map)
-
+      const businessLogic = new BusinessLogic()
+      injectBusinessLogic({viewer: map.viewer, mars3d, Cesium, map, $ownerInstance: this.$ownerInstance}, businessLogic)
       // 创建矢量数据图层
-      let graphicLayer = new mars3d.layer.GraphicLayer({
-        allowDrillPick: true // 如果存在坐标完全相同的图标点，可以打开该属性，click事件通过graphics判断
-      })
-      map.addLayer(graphicLayer)
+      // let graphicLayer = new mars3d.layer.GraphicLayer({
+      //   allowDrillPick: true // 如果存在坐标完全相同的图标点，可以打开该属性，click事件通过graphics判断
+      // })
+      // map.addLayer(graphicLayer)
 // // 添加谷歌地图图层
 //       var googleMapsImageryProvider = new Cesium.UrlTemplateImageryProvider({
 //         url: 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
@@ -86,22 +89,22 @@ export default {
 //       viewer.imageryLayers.addImageryProvider(googleMapsImageryProvider);
 
       //测试本地图片
-      const graphic = new mars3d.graphic.BillboardEntity({
-        position: [117.229619, 31.686288, 1000],
-        style: {
-          image: "static/img/mark-red.png",
-          horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
-          verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-        },
-        attr: {
-          remark: "示例1"
-        }
-      })
-      graphicLayer.addGraphic(graphic)
-      graphic.on(mars3d.EventType.click, () => {
-        // 注意，这里不能传函数
-        this.$ownerInstance.callMethod('cesiumCallback', '点击了对象')
-      })
+      // const graphic = new mars3d.graphic.BillboardEntity({
+      //   position: [117.229619, 31.686288, 1000],
+      //   style: {
+      //     image: "static/img/mark-red.png",
+      //     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+      //     verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+      //   },
+      //   attr: {
+      //     remark: "示例1"
+      //   }
+      // })
+      // graphicLayer.addGraphic(graphic)
+      // graphic.on(mars3d.EventType.click, () => {
+      //   // 注意，这里不能传函数
+      //   this.$ownerInstance.callMethod('cesiumCallback', '点击了对象')
+      // })
     },
 
     //重写cesium接口
